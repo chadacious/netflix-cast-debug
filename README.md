@@ -47,7 +47,8 @@ It was at this point I decided to take a break and move on for now. The remainin
 - try to re-route the cast url for the netflix cast app id using my Edgemax Router and provide a response that included the `whitelisting` prop
 - see if it would be possible to root an older generation 1 or 2 chromecast device to gain access to the file system to look for the device's DKE key (perhaps even run frida on it). However, some quick google searching didn't reveal any current known rooting exploits for these devices.
 - change the hosts file on a rooted android device to route to my own server for clients3.google.com
+  - I did try this to a point, setup my own DNS server, used DNS Forwarder to point my rooted device to it. Put entries in my DNS server for clients3.google.com to forward to a site served on my dev machine with a self signed certificate for https. Chrome on the android device hit it just fine (wouldn't load it entirely though as it was a self-served cert so gave an SSL error). However when casting from the Netflix app it seemed to ignore my DNS forwarding. I ran `dnstop` on my ubuntu DNS server and I could see that it was resolving `dns.google` so I'm wondering if they bypass the device's DNS server entirely. Might be able to do something about that but didn't pursue it further.
 - use frida to isolate and replace the cast app id response with one that includes the `whitelisting` prop.
-  - these last two are probably options that I think I could do with my current skills
+
 
 The idea behind wanting the `whitelisting` prop is that it may enable the NfWebCrypto plugin and I could get farther along in the process of self-hosting the netflix cast app.
