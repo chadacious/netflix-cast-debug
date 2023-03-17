@@ -42,6 +42,7 @@ Most of the NfWebCrypto is now supported by window.Crypto.subtle except two seem
 
 By spoofing a known ESN id for chrome browsers, I was able to see some cast messaging, which is all encrypted using their MSL which seems to require a working NfWebCrytpo plugin to decode.
 
+### Next Steps
 It was at this point I decided to take a break and move on for now. The remaining ideas I had were:
 - try to re-route the cast url for the netflix cast app id using my Edgemax Router and provide a response that included the `whitelisting` prop
 - see if it would be possible to root an older generation 1 or 2 chromecast device to gain access to the file system to look for the device's DKE key (perhaps even run frida on it). However, some quick google searching didn't reveal any current known rooting exploits for these devices.
