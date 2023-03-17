@@ -1,4 +1,4 @@
-# Debugging a cast app
+# Debugging the Netflix cast app
 - First get a rooted android device with the play store installed
 - install frida-server on it and start it
 - install a netflix.apk on it (probabaly can't install it from the google play store)
