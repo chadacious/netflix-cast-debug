@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chromecast redirector</title>
+    <script type="text/javascript">
+        window.cryptokeys = window.crypto.subtle;
+        window.cryptokeys.getKeyByName = (name) => new Promise((resolve) => resolve(0));
+        !function (e) {
+            var o = {};
+
+            function n(t) {
+                if (o[t]) return o[t].exports;
+                var r = o[t] = {
+                    i: t,
+                    l: !1,
+                    exports: {}
+                };
+                return e[t].call(r.exports, r, r.exports, n), r.l = !0, r.exports
+            }
+            n.m = e, n.c = o, n.d = function (e, o, t) {
+                n.o(e, o) || Object.defineProperty(e, o, {
+                    enumerable: !0,
+                    get: t
+                })
+            }, n.r = function (e) {
+                "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
+                    value: "Module"
+                }), Object.defineProperty(e, "__esModule", {
+                    value: !0
+                })
+            }, n.t = function (e, o) {
+                if (1 & o && (e = n(e)), 8 & o) return e;
+                if (4 & o && "object" == typeof e && e && e.__esModule) return e;
+                var t = Object.create(null);
+                if (n.r(t), Object.defineProperty(t, "default", {
+                    enumerable: !0,
+                    value: e
+                }), 2 & o && "string" != typeof e)
+                    for (var r in e) n.d(t, r, function (o) {
+                        return e[o]
+                    }.bind(null, r));
+                return t
+            }, n.n = function (e) {
+                var o = e && e.__esModule ? function () {
+                    return e.default
+                } : function () {
+                    return e
+                };
+                return n.d(o, "a", o), o
+            }, n.o = function (e, o) {
+                return Object.prototype.hasOwnProperty.call(e, o)
+            }, n.p = "", n(n.s = 0)
+        }([function (e, o, n) {
+            "use strict";
+            ! function (e) {
+                const o = "eureka.html";
+                let n = "onload";
+                const t = !0;
+
+                function r() {
+                    const o = navigator.appVersion.match(/.*CrKey\/([0-9.]+)/i),
+                        n = navigator.appVersion.match(/.*Chrome\/([0-9.]+)/i),
+                        t = e.cast && e.cast.__platform__ && e.cast.__platform__.queryPlatformValue,
+                        r = t && t("system-version"),
+                        i = t && t("device-model");
+                    return {
+                        browserVersion: n && n[1] || void 0,
+                        firmwareVersion: o && o[1] || void 0,
+                        systemVersion: r || void 0,
+                        deviceModel: i || void 0
+                    }
+                }
+
+                function i(e) {
+                    const n = r();
+                    let i = o + "?startup_failure=true";
+                    var s;
+                    e && (i += "&failure_reason=" + encodeURIComponent(e)), n.firmwareVersion && (i += "&firmware_version=" + encodeURIComponent(n.firmwareVersion)), n.browserVersion && (i += "&browser_version=" + encodeURIComponent(n.browserVersion)), n.systemVersion && (i += "&system_version=" + encodeURIComponent(n.systemVersion)), n.deviceModel && (i += "&device_model=" + encodeURIComponent(n.deviceModel)), s = "Startup failed: redirecting to " + i, t && (console.log(s), document.body.innerHTML += s);
+                    console.log(`redirecting: ${i}`);
+                    c(i);
+                }
+
+                function c(o) {
+                    e.location.assign(o)
+                }
+                e.onload = function () {
+                    n = "cookies";
+                    // document.cookie = 'memclid=94af0741-b3f6-4b7e-98c3-8ae7751632dd; netflix-sans-normal-3-loaded=true; netflix-sans-bold-3-loaded=true; pas=%7B%22supplementals%22%3A%7B%22muted%22%3Atrue%7D%7D; nfvdid=BQFmAAEBEA1722luixayRO1ihpbH1zNgRtE2xTNyNIZFmquDDb-d6CsAjKkR3yQA6v3DpVu8_6cgn9pvbWMmFol7J0AF4DkOw_-KgiX1PgUL46xx_09qnrb6UlKdWDW7fe6FN--F7Pw1DnZP1eHSX308zv1Cx6ha; flwssn=ba23e963-6f79-4764-99da-e4ec56acd064; OptanonConsent=isGpcEnabled=0&datestamp=Thu+Mar+16+2023+05%3A35%3A21+GMT-0700+(Pacific+Daylight+Time)&version=202301.1.0&isIABGlobal=false&hosts=&consentId=5dfdc369-709c-4795-8b0f-50765003cf03&interactionCount=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A1&AwaitingReconsent=false; profilesNewSession=0;NetflixId=ct%3DBQAOAAEBEFby9Mu0_euodWzzeHldCdiB4JW5Req1z2H-2ogxYip9cjF-HfIyOyGw2iDuB0BFkxXQzyJ7CeCowkisGAJWQQzwsQ5bU-GRYoJEPvsDRSfEgH1GNCkd8Wf_r2sKk2TO3Ihqs9DMGCFAhA9P06qR5REH29SR-u0XLf6w20z3qSA4OfyTyheqk5daSois02M-Yjq0o9BB1g4x-SG3PMq_RLU3xEmdW3RW2P32xkgaSPu5_as_7u9R02Iy6b91d8VqDnHELJMYqBBhiQ66jFvx26Rjwn_qIlrERfqPnwK9e6G46ibTpwNCSN6XdqI3jo4OiZNzHYdWHps3P0F3dLpJhgoGPm9tY8eOpHGIMvDaPr1nJoHgzQQfIoSt4KAAqYVSwycwn1IwoVAE_7UmrNBh2nP65y1tn7oM-L9QY13kJr8yjofMmD0bYPxBPc0QIFIFdtAaUyVswO9-neYI5wLcFinPoJU7tmBDl4fiW4CN3G2g0sigJugNnnNivHOuCsL3iG2Xo-sh02JtePRVpsBG0w-FrGRhAJa3-xLREq5VJcMgLOObaZcvUcxYDaJ6--rKCSF94A8ExJ3BL12lUlbp5w1i1kKvpl760KagYY17iW-wE46uGCCZO4NR20Fd8uy3BEXxYBAYPF67gcKolQb943dmrw..%26bt%3Ddbl%26ch%3DAQEAEAABABTjUHdtHSc4K3Ozc6cJ5FGkfvA-wd15DBE.%26v%3D2%26mac%3DAQEAEAABABTWlNMTD7PaP-C80PyKwCaKVTbwM8RXimw.;SecureNetflixId=v%3D2%26mac%3DAQEAEQABABTyBEgBEj2GadXsD_bSKqwnSCkCDtwuSuM.%26dt%3D1678970116451';
+                    new e.Promise(function (o) {
+                        if (document.cookie.includes("NetflixId=")) {
+                            console.log("Found NetflixId cookie.");
+                            return void o(); // resolve
+                        }
+                        const n = e.indexedDB.open("netflix.cookies", 1);
+                        n.onerror = function () {
+                            o()
+                        };
+                        n.onsuccess = function (e) {
+                            try {
+                                const n = e.target.result,
+                                    t = n.transaction(["cookies"]),
+                                    r = t.objectStore("cookies"),
+                                    i = r.get("all");
+                                i.onerror = function () {
+                                    o()
+                                }, i.onsuccess = function () {
+                                    const e = i.result.cookies;
+                                    e.forEach(e => {
+                                        document.cookie = e
+                                    }), o()
+                                }
+                            } catch (e) {
+                                o()
+                            }
+                        };
+                        n.onupgradeneeded = function (e) {
+                            e.target.transaction.abort(), o()
+                        };
+                        setTimeout(function () { o() }, 3e3)
+                    }).then(function () {
+                        n = "cryptokeys";
+                        if (e.cryptokeys) {
+                            e.cryptokeys.getKeyByName("DKE").then(function (e) {
+                                e && e.id ? c(function (e) {
+                                    const n = r();
+                                    let t = o + "?e=" + encodeURIComponent(e);
+                                    return n.firmwareVersion && (t += "&firmware_version=" + encodeURIComponent(n.firmwareVersion)), n.browserVersion && (t += "&browser_version=" + encodeURIComponent(n.browserVersion)), t
+                                }(atob(e.id))) : i("no key" + (e ? " id" : ""))
+                            });
+                         } else {
+                            console.log("no cryptokeys");
+                            i("no cryptokeys");
+                         }
+                    })
+                };
+                setTimeout(() => i("timeout " + n), 2e4)
+            }(window)
+        }]);</script>
+</head>
+
+<body style="background-color: #000">
+    <!-- <script src="nfcrypto.js"></script> -->
+    
+</body>
+
+</html>
