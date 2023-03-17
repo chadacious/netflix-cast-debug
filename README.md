@@ -13,7 +13,7 @@
   - To figure out which function to re-implement using frida, I examined both the JADX decompiled code and the smali code to isolate the function that I needed to change to set the cast_app_id to my id instead of the one the netflix app was specifying.
 
 
-# Attempt to debug Netflix casting
+# Attempt to Self-Host the Netflix Casting App
 My first goal was to identify the netflix ESN that was being used by the cast-receiver device. Unfortunately, I discovered that the netflix cast app was exceedingly complex. Note that this only really applies to older cast devices (generation 1 & 2) since casting to an android TV device simply forces the launching of the netflix app on that device.
 
 ## Special Handling Between Netflix & Google
